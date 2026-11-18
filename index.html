@@ -123,6 +123,40 @@ code,.mono{font-family:var(--mono);font-size:.92em;background:var(--bg-code);pad
 .nav a:hover{background:var(--bg-soft);color:var(--ink)}
 .nav a.active{background:var(--accent-soft);color:var(--accent);border-left-color:var(--accent);font-weight:600}
 .nav a.active .n{color:var(--accent)}
+/* Nested lecture table of contents */
+.nav-group{margin:0 0 2px}
+.nav-chapter{display:flex;align-items:center;gap:2px}
+.nav-chapter > a{flex:1;min-width:0}
+.nav-toggle{
+  appearance:none;flex:0 0 27px;width:27px;height:32px;border:0;border-radius:6px;
+  background:transparent;color:var(--muted);display:grid;place-items:center;cursor:pointer;
+}
+.nav-toggle::before{
+  content:"";display:block;width:7px;height:7px;border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;
+}
+.nav-group.open .nav-toggle::before{transform:rotate(45deg)}
+.nav-toggle:hover,.nav-toggle:focus-visible{background:var(--bg-soft);color:var(--accent)}
+.nav-toggle:focus-visible,.nav a:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.nav-sublist{
+  display:none;margin:2px 8px 9px 29px;padding:2px 0 3px 7px;
+  border-left:1px solid var(--line-strong);
+}
+.nav-group.open .nav-sublist{display:block}
+.nav-sublist a{
+  font-size:12px;line-height:1.5;padding:5px 8px;gap:0;
+  border-left-width:2px;overflow-wrap:anywhere;
+}
+.nav-sublist a.active{background:var(--accent-soft);color:var(--accent);border-left-color:var(--accent)}
+main .lecture h3{scroll-margin-top:88px}
+.usage-notice{
+  margin-top:18px;padding:14px 16px 12px;background:var(--bg-soft);
+  border:1px solid var(--line);border-radius:9px;font-size:12.5px;line-height:1.8;
+}
+.usage-notice .notice-label{font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:600;margin-bottom:5px}
+.usage-notice p{margin:3px 0;color:var(--ink-2)}
+.usage-notice strong{color:var(--ink)}
+
 .sidebar-foot{margin-top:22px;padding:12px 10px 0;border-top:1px dotted var(--line-strong)}
 .sidebar-foot .legend{font-size:12px;color:var(--muted);line-height:1.8}
 .sidebar-foot .legend b{color:var(--star);font-weight:600}
@@ -394,19 +428,130 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
   <aside class="sidebar" id="sidebar">
     <nav class="nav" aria-label="章节目录">
       <p class="nav-label">九讲</p>
-      <a href="#lec1"><span class="n">01</span>社会医学概述</a>
-      <a href="#lec2"><span class="n">02</span>健康状况的测量</a>
-      <a href="#lec3"><span class="n">03</span>社会医学研究方法概述</a>
-      <a href="#lec4"><span class="n">04</span>定量研究方法</a>
-      <a href="#lec5"><span class="n">05</span>定性研究方法</a>
-      <a href="#lec6"><span class="n">06</span>健康社会决定因素 Part 1</a>
-      <a href="#lec7"><span class="n">07</span>健康社会决定因素 Part 2</a>
-      <a href="#lec8"><span class="n">08</span>健康社会决定因素 Part 3</a>
-      <a href="#lec9"><span class="n">09</span>社会卫生策略</a>
+      <div class="nav-group open" id="nav-group-lec1">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec1"><span class="n">01</span>社会医学概述</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec1" aria-expanded="true" aria-label="展开或收起社会医学概述的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec1">
+          <a href="#lec1-sec1">一、社会医学的性质</a>
+          <a href="#lec1-sec2">二、社会医学的发展史</a>
+          <a href="#lec1-sec3">三、社会医学的研究内容</a>
+          <a href="#lec1-sec4">四、医学模式的概念</a>
+          <a href="#lec1-sec5">五、生物-心理-社会医学模式</a>
+        </div>
+      </div>
+      <div class="nav-group" id="nav-group-lec2">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec2"><span class="n">02</span>健康状况的测量</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec2" aria-expanded="false" aria-label="展开或收起健康状况的测量的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec2">
+          <a href="#lec2-sec1">一、社会卫生状况的概念与研究意义</a>
+          <a href="#lec2-sec2">二、评价社会卫生状况的关键指标</a>
+          <a href="#lec2-sec3">三、评价社会卫生状况的方法和资料来源</a>
+          <a href="#lec2-sec4">本讲小结</a>
+        </div>
+      </div>
+      <div class="nav-group" id="nav-group-lec3">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec3"><span class="n">03</span>社会医学研究方法概述</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec3" aria-expanded="false" aria-label="展开或收起社会医学研究方法概述的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec3">
+          <a href="#lec3-sec1">一、社会科学研究方法</a>
+          <a href="#lec3-sec2">二、社会医学研究方法</a>
+          <a href="#lec3-sec3">三、社会医学研究过程</a>
+          <a href="#lec3-sec4">四、问题的种类与研究导向</a>
+          <a href="#lec3-sec5">五、几组基本对比</a>
+          <a href="#lec3-sec6">六、选择研究问题与研究设计</a>
+        </div>
+      </div>
+      <div class="nav-group" id="nav-group-lec4">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec4"><span class="n">04</span>定量研究方法</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec4" aria-expanded="false" aria-label="展开或收起定量研究方法的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec4">
+          <a href="#lec4-sec1">一、量化研究类型</a>
+          <a href="#lec4-sec2">二、概念及其操作化</a>
+          <a href="#lec4-sec3">三、研究的信度与效度</a>
+          <a href="#lec4-sec4">四、调查研究</a>
+          <a href="#lec4-sec5">五、问卷设计</a>
+          <a href="#lec4-sec6">六、调查资料的收集方法</a>
+          <a href="#lec4-sec7">七、调查的组织与实施</a>
+          <a href="#lec4-sec8">八、调查研究的特点及应用</a>
+        </div>
+      </div>
+      <div class="nav-group" id="nav-group-lec5">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec5"><span class="n">05</span>定性研究方法</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec5" aria-expanded="false" aria-label="展开或收起定性研究方法的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec5">
+          <a href="#lec5-sec1">一、什么是定性研究</a>
+          <a href="#lec5-sec2">二、定性研究中的伦理问题</a>
+          <a href="#lec5-sec3">三、定性研究中的范式问题</a>
+          <a href="#lec5-sec4">四、一些定性的实地研究范式</a>
+          <a href="#lec5-sec5">五、定性方法的作用与定性调查</a>
+          <a href="#lec5-sec6">六、如何开展定性调查</a>
+          <a href="#lec5-sec7">七、定性调查资料的使用</a>
+          <a href="#lec5-sec8">八、两篇范文的方法要点</a>
+        </div>
+      </div>
+      <div class="nav-group" id="nav-group-lec6">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec6"><span class="n">06</span>健康的社会决定因素 Part 1</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec6" aria-expanded="false" aria-label="展开或收起健康的社会决定因素 Part 1的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec6">
+          <a href="#lec6-sec1">一、健康公平（Health Equity）</a>
+          <a href="#lec6-sec2">二、健康社会决定因素（SDH）</a>
+          <a href="#lec6-sec3">三、分析 SDH 的理论框架</a>
+          <a href="#lec6-sec4">四、SDH 的直接影响因素（Intermediary Determinants）</a>
+          <a href="#lec6-sec5">Key messages</a>
+        </div>
+      </div>
+      <div class="nav-group" id="nav-group-lec7">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec7"><span class="n">07</span>健康的社会决定因素 Part 2：卫生系统</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec7" aria-expanded="false" aria-label="展开或收起健康的社会决定因素 Part 2：卫生系统的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec7">
+          <a href="#lec7-sec1">一、什么是卫生系统？</a>
+          <a href="#lec7-sec2">二、分析卫生系统的框架</a>
+          <a href="#lec7-sec3">Key message</a>
+        </div>
+      </div>
+      <div class="nav-group" id="nav-group-lec8">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec8"><span class="n">08</span>健康的社会决定因素 Part 3</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec8" aria-expanded="false" aria-label="展开或收起健康的社会决定因素 Part 3的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec8">
+          <a href="#lec8-sec1">一、社会经济状况（Socioeconomic Position, SEP）</a>
+          <a href="#lec8-sec2">二、社会经济及政治环境对健康的影响</a>
+          <a href="#lec8-sec3">三、经济发展与健康</a>
+          <a href="#lec8-sec4">四、文化因素与健康</a>
+          <a href="#lec8-sec5">Key Message</a>
+        </div>
+      </div>
+      <div class="nav-group" id="nav-group-lec9">
+        <div class="nav-chapter">
+          <a class="chapter-link" href="#lec9"><span class="n">09</span>社会卫生策略</a>
+          <button class="nav-toggle" type="button" aria-controls="sub-lec9" aria-expanded="false" aria-label="展开或收起社会卫生策略的小节"></button>
+        </div>
+        <div class="nav-sublist" id="sub-lec9">
+          <a href="#lec9-sec1">一、社会卫生策略</a>
+          <a href="#lec9-sec2">二、全球卫生策略</a>
+          <a href="#lec9-sec3">三、中国卫生策略</a>
+          <a href="#lec9-sec4">Key message</a>
+        </div>
+      </div>
       <p class="nav-label">附录</p>
-      <a href="#appA"><span class="n">A</span>高频考点速查</a>
-      <a href="#appB"><span class="n">B</span>易混概念辨析</a>
-      <a href="#appC"><span class="n">C</span>PPT 外真题补充</a>
+      <a class="appendix-link" href="#appA"><span class="n">A</span>高频考点速查</a>
+      <a class="appendix-link" href="#appB"><span class="n">B</span>易混概念辨析</a>
+      <a class="appendix-link" href="#appC"><span class="n">C</span>PPT 外真题补充</a>
     </nav>
     <div class="sidebar-foot">
       <div class="legend">
@@ -444,6 +589,13 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <b>折叠区</b>收纳机制、数据、案例与讲者备注；标有「依原图转述」的段落，是把 PPT 图片页的内容转成文字。
           PPT 里没有、但往年考过的内容统一放在 <a href="#appC">附录 C</a>，不混入正文。
         </div>
+        <div class="usage-notice" role="note" aria-label="作者与使用声明">
+          <div class="notice-label">作者与使用声明</div>
+          <p><strong>作者：</strong>公卫25本Cinnabar</p>
+          <p><strong>使用范围：</strong>仅用于北大学生复习使用。</p>
+          <p><strong>AI 辅助整理：</strong>DeepSeekv4.1flash，Claude Fable5.2，GPT6.1sol</p>
+          <p><strong>参考资料：</strong>26秋社会医学课程PPT。</p>
+        </div>
       </section>
 
       <!-- ================= LECTURE 1 ================= -->
@@ -452,7 +604,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">01</div>
           <div class="lec-title">
             <h2>社会医学概述</h2>
-            <div class="lec-meta">PPT 64 页 · 2026-09-04 · 郭静</div>
+            <div class="lec-meta">PPT 64 页 · 2026-09-04</div>
           </div>
         </div>
 
@@ -466,7 +618,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </ol>
         </div>
 
-        <h3>一、社会医学的性质 <span class="star">21-1</span></h3>
+        <h3 id="lec1-sec1">一、社会医学的性质 <span class="star">21-1</span></h3>
         <div class="def">
           <div class="d-label">定义</div>
           <p>社会医学是医学与社会科学相结合的一门交叉科学。它研究社会因素与健康及疾病之间的相互作用及其规律，制定相应的社会卫生策略，提高人群健康水平。</p>
@@ -540,7 +692,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>二、社会医学的发展史</h3>
+        <h3 id="lec1-sec2">二、社会医学的发展史</h3>
         <div class="def">
           <div class="d-label">起源</div>
           <p>社会医学起源于欧洲。法国医师盖林（Guerin）在 1848 年首次提出社会医学的概念，将社会医学分为社会生理学、社会病理学、社会卫生学和社会治疗学。</p>
@@ -563,7 +715,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </table>
         </div>
 
-        <h3>三、社会医学的研究内容 <span class="star">21-4</span> <span class="star">21-23</span> <span class="star">19-2</span></h3>
+        <h3 id="lec1-sec3">三、社会医学的研究内容 <span class="star">21-4</span> <span class="star">21-23</span> <span class="star">19-2</span></h3>
         <p>社会医学的研究内容由三部分组成，并形成一组对应关系：</p>
         <div class="tbl-wrap">
           <table class="tbl">
@@ -706,7 +858,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>四、医学模式的概念</h3>
+        <h3 id="lec1-sec4">四、医学模式的概念</h3>
         <div class="def">
           <div class="d-label">定义</div>
           <p>医学模式（Medical model）是指在不同历史阶段和科学发展水平条件下，人类与疾病作斗争和处理医学领域中各种问题的思想和方法，是人类对健康及疾病观察与处理方法的宏观概括，其核心是医学观。</p>
@@ -774,7 +926,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </div>
 
-        <h3>五、生物-心理-社会医学模式</h3>
+        <h3 id="lec1-sec5">五、生物-心理-社会医学模式</h3>
         <div class="def">
           <div class="d-label">定义</div>
           <p>生物-心理-社会医学模式（bio-psycho-social medical model）也称现代医学模式，是指从生物、心理和社会等方面观察、认识、分析并处理人类健康和疾病问题的医学观和方法论。</p>
@@ -861,11 +1013,11 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">02</div>
           <div class="lec-title">
             <h2>健康状况的测量</h2>
-            <div class="lec-meta">PPT 56 页 · 2026-09 · 刘晓云 · 副标题：社会卫生状况</div>
+            <div class="lec-meta">PPT 56 页 · 2026-09 · 副标题：社会卫生状况</div>
           </div>
         </div>
 
-        <h3>一、社会卫生状况的概念与研究意义</h3>
+        <h3 id="lec2-sec1">一、社会卫生状况的概念与研究意义</h3>
         <div class="def">
           <div class="d-label">概念</div>
           <p>社会卫生状况（social health status）是指人群健康状况，以及影响人群健康状况的各种因素，主要是社会因素。</p>
@@ -889,7 +1041,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>二、评价社会卫生状况的关键指标</h3>
+        <h3 id="lec2-sec2">二、评价社会卫生状况的关键指标</h3>
         <p>PPT 列出五个关键指标：期望寿命（LE）、婴儿死亡率（IMR）、孕产妇死亡率（MMR）、伤残调整生命年（DALY）、生命质量（QOL）。</p>
 
         <h4>1. 期望寿命（Life Expectancy, LE）</h4>
@@ -1096,7 +1248,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </table>
         </div>
 
-        <h3>三、评价社会卫生状况的方法和资料来源</h3>
+        <h3 id="lec2-sec3">三、评价社会卫生状况的方法和资料来源</h3>
         <h4>（一）常规统计资料和统计报告</h4>
         <p><strong>重要的网站数据：</strong>WHO Global Health Observatory (GHO) data（https://www.who.int/data/gho/）；World Bank Open Data（http://data.worldbank.org/）。</p>
         <details class="fold">
@@ -1160,7 +1312,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>本讲小结</h3>
+        <h3 id="lec2-sec4">本讲小结</h3>
         <ul>
           <li>社会卫生状况是指人群健康状况，以及影响人群健康状况的各种因素，主要是社会因素。</li>
           <li>社会卫生状况的意义：掌握人群健康状况及其变动趋势；发现重点保护人群和重点防治对象；为制定政策和策略提供依据。</li>
@@ -1175,7 +1327,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">03</div>
           <div class="lec-title">
             <h2>社会医学研究方法概述</h2>
-            <div class="lec-meta">PPT 48 页 · 2026-09-18 · 郭静</div>
+            <div class="lec-meta">PPT 48 页 · 2026-09-18</div>
           </div>
         </div>
 
@@ -1189,7 +1341,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <p class="small muted" style="margin:8px 0 0">参考资料：社会医学（张拓红编）；社会科学研究方法（Earl Babbie 著，邱泽奇译）；社会研究方法（风笑天著）。</p>
         </div>
 
-        <h3>一、社会科学研究方法</h3>
+        <h3 id="lec3-sec1">一、社会科学研究方法</h3>
         <h4>1. 科学方法</h4>
         <div class="def">
           <div class="d-label">知识的几种来源</div>
@@ -1256,7 +1408,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </div>
 
-        <h3>二、社会医学研究方法</h3>
+        <h3 id="lec3-sec2">二、社会医学研究方法</h3>
         <div class="def">
           <div class="d-label">社会医学的视角</div>
           <p>从社会的角度，应用社会科学的理论和方法研究健康问题的社会决定因素及卫生服务策略。</p>
@@ -1299,7 +1451,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>三、社会医学研究过程</h3>
+        <h3 id="lec3-sec3">三、社会医学研究过程</h3>
         <div class="fig">
           <div class="timeline">
             <div class="tl-step"><div class="tl-dot">1</div><b>选择研究问题</b><span>提一个好问题</span></div>
@@ -1312,7 +1464,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
         </div>
         <p class="small muted">研究的第一步是提一个好问题：社会研究始于研究问题的选择，选好了问题等于解决了一半。第二步研究设计；第三步研究实施；第四步资料分析；第五步得出研究结果。研究实施可采用实验法、调查法、文献法、实地法；资料分析分定量分析与定性分析。</p>
 
-        <h3>四、问题的种类与研究导向</h3>
+        <h3 id="lec3-sec4">四、问题的种类与研究导向</h3>
         <h4>探索性、描述性、解释性</h4>
         <div class="tbl-wrap">
           <table class="tbl">
@@ -1344,7 +1496,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
         <p><strong>区别：</strong>理论导向的研究更关注如何发展出某种一般性的社会认知，而现实导向的研究则更关注如何有效地解决现实社会问题。</p>
         <div class="note"><span class="n-label">PPT 例子</span>研究大学毕业生就业：理论导向关注“大学毕业生的社会资本、人力资本对其成功就业的影响”“家庭背景与其职业地位获得之间的关系”；现实导向关注“当前大学毕业生的择业倾向具有哪些特征”“择业面临哪些困难”“如何拓宽就业途径”“如何有效解决就业问题”。</div>
 
-        <h3>五、几组基本对比</h3>
+        <h3 id="lec3-sec5">五、几组基本对比</h3>
         <h4>定量研究与定性研究</h4>
         <p><strong>含义：</strong>定量研究侧重于且较多地依赖于对事物的测量和计算；定性研究则侧重于和依赖于对事物的含义、特征、隐喻、象征的描述和理解。</p>
         <div class="grid2">
@@ -1436,7 +1588,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>六、选择研究问题与研究设计</h3>
+        <h3 id="lec3-sec6">六、选择研究问题与研究设计</h3>
         <h4>研究问题与研究主题</h4>
         <p>研究问题：社会研究所要回答的具体问题。研究主题：研究所涉及的现象领域或问题领域。</p>
         <div class="note"><span class="n-label">PPT 例子</span>研究主题：城市农村流动人口的健康状况。研究问题：农村流动人口的健康状况如何？哪些因素影响农村流动人口的健康状况？不同居住时间的农村流动人口的健康状况及其影响因素；收入如何影响农村流动人口健康状况？医疗保障状况如何影响农村流动人口的健康状况？卫生服务利用如何影响农村流动人口健康状况？</div>
@@ -1519,7 +1671,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">04</div>
           <div class="lec-title">
             <h2>定量研究方法</h2>
-            <div class="lec-meta">PPT 90 页 · 2026-10-09 · 郭静</div>
+            <div class="lec-meta">PPT 90 页 · 2026-10-09</div>
           </div>
         </div>
 
@@ -1533,7 +1685,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </ol>
         </div>
 
-        <h3>一、量化研究类型</h3>
+        <h3 id="lec4-sec1">一、量化研究类型</h3>
         <div class="grid3">
           <div class="card">
             <div class="c-label">类型 1</div>
@@ -1552,7 +1704,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </div>
 
-        <h3>二、概念及其操作化</h3>
+        <h3 id="lec4-sec2">二、概念及其操作化</h3>
         <h4>概念化</h4>
         <div class="def">
           <div class="d-label">基本术语</div>
@@ -1667,7 +1819,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </table>
         </div>
 
-        <h3>三、研究的信度与效度</h3>
+        <h3 id="lec4-sec3">三、研究的信度与效度</h3>
         <h4>信度 <span class="star">截屏 24</span> <span class="star">截屏 25</span></h4>
         <div class="def">
           <div class="d-label">定义</div>
@@ -1708,7 +1860,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
         <p><strong>影响效度的因素：</strong>测验本身的因素（测验材料代表性；避免引起误差的题型；测试难度适中，具有较高区分度；测试长度恰当；测试顺序恰当，先易后难）；测验实施中的干扰（主试、被试影响）；样本团体的性质；干涉变量。</p>
         <div class="note"><span class="n-label">资料说明</span>期末截屏第 24、25 题考查效度与信度各反映什么。截屏系统判分与 PPT 表述存在冲突，详见 <a href="#appC">附录 C</a>。</div>
 
-        <h3>四、调查研究</h3>
+        <h3 id="lec4-sec4">四、调查研究</h3>
         <h4>调查研究的概念</h4>
         <div class="def">
           <div class="d-label">定义</div>
@@ -1744,7 +1896,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </div>
 
-        <h3>五、问卷设计</h3>
+        <h3 id="lec4-sec5">五、问卷设计</h3>
         <div class="def">
           <div class="d-label">问卷</div>
           <p>问卷是调查者精心设计的一份问题表格，用来收集有关人们的社会特征、行为、态度、认知等各种资料。</p>
@@ -1872,7 +2024,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>六、调查资料的收集方法</h3>
+        <h3 id="lec4-sec6">六、调查资料的收集方法</h3>
         <div class="def">
           <div class="d-label">概念</div>
           <p><strong>自填问卷法：</strong>调查员将问卷发送给被调查者，由被调查者自己阅读和填答，然后再由调查员收回的资料收集方法。</p>
@@ -1923,7 +2075,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </div>
 
-        <h3>七、调查的组织与实施</h3>
+        <h3 id="lec4-sec7">七、调查的组织与实施</h3>
         <h4>调查员的挑选</h4>
         <div class="grid2">
           <div class="card">
@@ -1967,7 +2119,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
         <p><strong>回收率的意义：</strong>“回收率是受访者样本代表性的一项指标”，“是反映抽样调查结果对总体的代表性程度的重要指标之一”。</p>
         <p><strong>回收率的标准：</strong>样本的完整和资料的质量是同等关注的两个问题——“高回收率”“高质量”。</p>
 
-        <h3>八、调查研究的特点及应用</h3>
+        <h3 id="lec4-sec8">八、调查研究的特点及应用</h3>
         <div class="tbl-wrap">
           <table class="tbl">
             <thead><tr><th>优点</th><th>缺点</th></tr></thead>
@@ -1993,11 +2145,11 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">05</div>
           <div class="lec-title">
             <h2>定性研究方法</h2>
-            <div class="lec-meta">PPT 73 页 · 2026-10-16 · 郭静</div>
+            <div class="lec-meta">PPT 73 页 · 2026-10-16</div>
           </div>
         </div>
 
-        <h3>一、什么是定性研究</h3>
+        <h3 id="lec5-sec1">一、什么是定性研究</h3>
         <h4>适合定性研究的问题</h4>
         <div class="grid3">
           <div class="card"><h4>实践</h4><p>如交谈或阅读。</p></div>
@@ -2039,7 +2191,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>二、定性研究中的伦理问题</h3>
+        <h3 id="lec5-sec2">二、定性研究中的伦理问题</h3>
         <h4>1. 价值中立原则</h4>
         <div class="keybox">
           <div class="k-label">要点</div>
@@ -2090,7 +2242,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>三、定性研究中的范式问题</h3>
+        <h3 id="lec5-sec3">三、定性研究中的范式问题</h3>
         <h4>什么是范式</h4>
         <div class="quote">
           “对某一时期某一专业做仔细的历史研究，就能发现一组反复出现而类标准式的实例，体现各种理论在其概念的、观察的和仪器的应用中。这些实例就是共同体的范式，它们存在于教科书、课堂讲演和实验室的实验中。研究它们并用它们去实践，相应的共同体成员就能学会他们的专业。”
@@ -2151,7 +2303,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>四、一些定性的实地研究范式</h3>
+        <h3 id="lec5-sec4">四、一些定性的实地研究范式</h3>
         <h4>自然主义</h4>
         <p>研究者应该自然地进行观察并报告“现实”。典型研究：《街角社会（1943）》中对意裔美国人群体的民族志研究。民族志关注的是详细、准确地描述而不是解释。</p>
 
@@ -2202,7 +2354,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
         <h4>参与行动研究</h4>
         <p>研究者的功能是为研究对象——特别是弱势群体——出谋划策，以帮助他们更好地实现自己的利益。</p>
 
-        <h3>五、定性方法的作用与定性调查</h3>
+        <h3 id="lec5-sec5">五、定性方法的作用与定性调查</h3>
         <h4>为什么需要定性方法</h4>
         <ol>
           <li>一些问题、因素、效果、影响等无法量化：不适合用定量方法，或不能以定量方法为主。</li>
@@ -2249,7 +2401,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
         </div>
         <p class="small muted">以健康影响因素——卫生政策和措施为例：需要开展定性调查，应尽可能了解真实信息、数字如何产生，了解利益相关群体的想法、观点、可能的反映和反应（及其行动动机），而不是自己的主观臆测（可能会导致决策的偏性）；增加信息、知识和实例，启发思路或思考，获得理论、方法、技术等方面的支持，寻找可供选择的方案或措施；利用“老百姓”的生动语言，更生动地描述事物或问题，让上级领导了解更多的现实情况。</p>
 
-        <h3>六、如何开展定性调查</h3>
+        <h3 id="lec5-sec6">六、如何开展定性调查</h3>
         <h4>定性调查对象的特点</h4>
         <ul>
           <li>调查对象是人（人的心理和人的行为）：有思想、有感情、有动机、对相关政策和调查活动有反应。</li>
@@ -2317,7 +2469,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <li>善于发现问题，多方印证，原因的追究。</li>
         </ul>
 
-        <h3>七、定性调查资料的使用</h3>
+        <h3 id="lec5-sec7">七、定性调查资料的使用</h3>
         <h4>“常规”方法：主题框架分析法</h4>
         <div class="keybox">
           <div class="k-label">方法步骤</div>
@@ -2350,7 +2502,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>八、两篇范文的方法要点</h3>
+        <h3 id="lec5-sec8">八、两篇范文的方法要点</h3>
         <details class="fold">
           <summary>第一篇：“数字控制”下的劳动秩序——外卖骑手的劳动控制研究（陈龙，2020）</summary>
           <div class="fold-body">
@@ -2386,7 +2538,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">06</div>
           <div class="lec-title">
             <h2>健康的社会决定因素 Part 1</h2>
-            <div class="lec-meta">PPT 52 页 · 刘晓云 · Social Determinants of Health (Part 1)</div>
+            <div class="lec-meta">PPT 52 页 · Social Determinants of Health (Part 1)</div>
           </div>
         </div>
 
@@ -2400,7 +2552,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </ol>
         </div>
 
-        <h3>一、健康公平（Health Equity）</h3>
+        <h3 id="lec6-sec1">一、健康公平（Health Equity）</h3>
         <h4>健康转变与分布</h4>
         <div class="tbl-wrap">
           <table class="tbl">
@@ -2460,7 +2612,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </ul>
         </div>
 
-        <h3>二、健康社会决定因素（SDH）</h3>
+        <h3 id="lec6-sec2">二、健康社会决定因素（SDH）</h3>
         <div class="def">
           <div class="d-label">中文定义</div>
           <p>在那些直接导致疾病的因素之外，由人们的社会地位和拥有资源所决定的生活和工作环境及其他对健康产生影响的因素。</p>
@@ -2523,7 +2675,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>三、分析 SDH 的理论框架</h3>
+        <h3 id="lec6-sec3">三、分析 SDH 的理论框架</h3>
         <h4>Dahlgren &amp; Whitehead：分层影响模型</h4>
         <div class="fig">
           <svg viewBox="0 0 820 420" role="img" aria-label="Dahlgren 和 Whitehead 的分层影响模型，由内向外五层">
@@ -2587,7 +2739,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="figcap"><b>图 5</b>　健康社会决定因素的行动框架（依据 L6-p26、p27、p50 重绘）。结构性因素决定健康不公平；中介因素直接影响健康；社会凝聚力与社会资本横跨两者。</div>
         </div>
 
-        <h3>四、SDH 的直接影响因素（Intermediary Determinants） <span class="star">19-21</span></h3>
+        <h3 id="lec6-sec4">四、SDH 的直接影响因素（Intermediary Determinants） <span class="star">19-21</span></h3>
         <p>四项中介因素：Material circumstances（物质条件）、Psychosocial factors（心理社会因素）、Behavior and biological factors（行为和生物学因素）、Health system（卫生系统）。</p>
 
         <h4>1. Material circumstances（物质条件）</h4>
@@ -2728,7 +2880,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
         <h4>4. Health system（卫生系统）</h4>
         <p>作为四项中介因素之一，卫生系统单独在下一讲展开，见 <a href="#lec7">第 7 讲</a>。</p>
 
-        <h3>Key messages</h3>
+        <h3 id="lec6-sec5">Key messages</h3>
         <ul>
           <li>Health (in)equity</li>
           <li>Definition: Social Determinants of Health</li>
@@ -2743,7 +2895,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">07</div>
           <div class="lec-title">
             <h2>健康的社会决定因素 Part 2：卫生系统</h2>
-            <div class="lec-meta">PPT 36 页 · 刘晓云 · Health System</div>
+            <div class="lec-meta">PPT 36 页 · Health System</div>
           </div>
         </div>
 
@@ -2757,7 +2909,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
 
         <div class="note"><span class="n-label">上节课回顾</span>Health inequities are health differences that are socially produced, systematic in their distribution across the population, and unfair. 社会因素影响健康的机制：心理情绪反应；直接和间接作用；生命历程视角；社会选择视角。讲者备注：健康的社会决定因素包括三层意思——直接、SEP 和环境。</div>
 
-        <h3>一、什么是卫生系统？</h3>
+        <h3 id="lec7-sec1">一、什么是卫生系统？</h3>
         <div class="def">
           <div class="d-label">卫生系统</div>
           <p>从系统的角度来理解。系统是由一些相互联系、相互制约的若干组成部分结合而成的、具有特定功能的一个有机整体。具有整体性、相对独立性、适应性等特点。</p>
@@ -2839,7 +2991,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </div>
 
-        <h3>二、分析卫生系统的框架</h3>
+        <h3 id="lec7-sec2">二、分析卫生系统的框架</h3>
         <div class="fig">
           <div class="flow">
             <div class="panel">
@@ -3041,7 +3193,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
         </div>
         <p class="small muted">依原图转述 · L7-p34。卫生服务提供体系分为公共卫生服务体系和医疗服务体系；按中央、省、市、县区、乡镇分级；基层医疗卫生机构在农村是乡镇卫生院和村卫生室，在城市是社区卫生服务中心和社区卫生服务站。</p>
 
-        <h3>Key message</h3>
+        <h3 id="lec7-sec3">Key message</h3>
         <ul>
           <li>卫生体系的分析框架（目标、six building blocks）</li>
           <li>卫生服务需要、需求及利用的关系</li>
@@ -3055,7 +3207,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">08</div>
           <div class="lec-title">
             <h2>健康的社会决定因素 Part 3</h2>
-            <div class="lec-meta">PPT 40 页 · 刘晓云 · Social Determinants of Health (Part 3)</div>
+            <div class="lec-meta">PPT 40 页 · Social Determinants of Health (Part 3)</div>
           </div>
         </div>
 
@@ -3067,7 +3219,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </ol>
         </div>
 
-        <h3>一、社会经济状况（Socioeconomic Position, SEP）</h3>
+        <h3 id="lec8-sec1">一、社会经济状况（Socioeconomic Position, SEP）</h3>
         <div class="def">
           <div class="d-label">社会阶层 Social class</div>
           <p>西方社会学的一个重要概念，主要是指由财富、权力和威望等造成的不同社会地位。</p>
@@ -3230,7 +3382,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>二、社会经济及政治环境对健康的影响</h3>
+        <h3 id="lec8-sec2">二、社会经济及政治环境对健康的影响</h3>
         <div class="def">
           <div class="d-label">Social Economic and political context</div>
           <p>This covers a broad spectrum of factors. Indirect influence on health through socioeconomic position. Less research（研究较少）。</p>
@@ -3263,7 +3415,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </details>
 
-        <h3>三、经济发展与健康</h3>
+        <h3 id="lec8-sec3">三、经济发展与健康</h3>
         <h4>（1）经济发展可促进人群健康水平提高</h4>
         <ol>
           <li>经济发展是提高居民物质生活水平（营养、环境改善）的前提；</li>
@@ -3286,7 +3438,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <li>税收政策：国税/地税，中央转移支付，收入所得税，消费税，烟草税等。</li>
         </ul>
 
-        <h3>四、文化因素与健康</h3>
+        <h3 id="lec8-sec4">四、文化因素与健康</h3>
         <div class="def">
           <div class="d-label">文化的定义</div>
           <p><strong>广义的文化：</strong>人类在社会历史发展过程中所创造的物质财富和精神财富的总和，特指社会意识形态。</p>
@@ -3322,7 +3474,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </div>
 
-        <h3>Key Message</h3>
+        <h3 id="lec8-sec5">Key Message</h3>
         <ul>
           <li>Key Measures of SES: income, education, occupation</li>
           <li>Gini Coefficient</li>
@@ -3336,7 +3488,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="lec-no">09</div>
           <div class="lec-title">
             <h2>社会卫生策略</h2>
-            <div class="lec-meta">PPT 57 页 · 2026-11 · 刘晓云</div>
+            <div class="lec-meta">PPT 57 页 · 2026-11</div>
           </div>
         </div>
 
@@ -3351,7 +3503,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
 
         <div class="note"><span class="n-label">开场回顾</span>社会医学的研究内容：1. 社会卫生状况——社会医学诊断；2. 健康的社会决定因素——社会病因学分析；3. 社会卫生策略——社会医学“处方”。</div>
 
-        <h3>一、社会卫生策略</h3>
+        <h3 id="lec9-sec1">一、社会卫生策略</h3>
         <div class="def">
           <div class="d-label">策略（Strategy）</div>
           <p>策略（Strategy）是指为实现目标所采取的最优路径，以及相应的行动。</p>
@@ -3361,7 +3513,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <p>是指促进卫生发展和维护人群健康的战略与政策、目标与指标、对策和措施。既包括卫生领域内的策略，如区域卫生规划、社区卫生服务和初级卫生保健、医疗卫生技术；也包括卫生相关领域的策略，即与目标人群健康相适应的政治、经济、法律和文化教育等方面的措施。</p>
         </div>
 
-        <h3>二、全球卫生策略</h3>
+        <h3 id="lec9-sec2">二、全球卫生策略</h3>
         <h4>（一）初级卫生保健（Primary Health Care, PHC）</h4>
         <div class="def">
           <div class="d-label">1977 年 · 第 30 届世界卫生大会</div>
@@ -3577,7 +3729,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           <div class="card center"><h4>全民健康覆盖</h4><p>Universal Health Coverage</p></div>
         </div>
 
-        <h3>三、中国卫生策略</h3>
+        <h3 id="lec9-sec3">三、中国卫生策略</h3>
         <h4>（一）中国的初级卫生保健</h4>
         <div class="grid2">
           <div class="card">
@@ -3686,7 +3838,7 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
           </div>
         </div>
 
-        <h3>Key message</h3>
+        <h3 id="lec9-sec4">Key message</h3>
         <ul>
           <li>Alma-Ata Declaration and PHC</li>
           <li>Basic principles and features of PHC</li>
@@ -3969,26 +4121,44 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
   });
   overlay.addEventListener('click', function () { setMenu(false); });
 
+  /* ---------- Nested lecture navigation ---------- */
+  var navGroups = Array.prototype.slice.call(document.querySelectorAll('.nav-group'));
+  function setNavGroup(group, open) {
+    if (!group) return;
+    group.classList.toggle('open', open);
+    var btn = group.querySelector('.nav-toggle');
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  navGroups.forEach(function (group) {
+    var btn = group.querySelector('.nav-toggle');
+    btn.addEventListener('click', function () {
+      setNavGroup(group, !group.classList.contains('open'));
+    });
+  });
+
   /* ---------- Fold all ---------- */
   document.getElementById('expandAll').addEventListener('click', function () {
     document.querySelectorAll('main details').forEach(function (d) { d.open = true; });
+    navGroups.forEach(function (g) { setNavGroup(g, true); });
   });
   document.getElementById('collapseAll').addEventListener('click', function () {
     document.querySelectorAll('main details').forEach(function (d) { d.open = false; });
+    navGroups.forEach(function (g) { setNavGroup(g, false); });
   });
 
-  /* ---------- Progress, scrollspy, back-to-top ---------- */
+  /* ---------- Progress, chapter + subsection scrollspy, back-to-top ---------- */
   var progress = document.getElementById('progress');
   var backTop = document.getElementById('backTop');
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
-  var sections = navLinks.map(function (a) {
-    return document.querySelector(a.getAttribute('href'));
+  var chapterLinks = Array.prototype.slice.call(document.querySelectorAll('.nav .chapter-link, .nav .appendix-link'));
+  var subLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-sublist a'));
+  var sections = chapterLinks.map(function (a) {
+    return document.getElementById(a.getAttribute('href').slice(1));
   }).filter(Boolean);
-  if (sections.length) {
-    navLinks.forEach(function (a) {
-      if (a.getAttribute('href') === '#' + sections[0].id) a.classList.add('active');
-    });
-  }
+  var subsectionHeads = subLinks.map(function (a) {
+    var h = document.getElementById(a.getAttribute('href').slice(1));
+    return h ? { heading: h, link: a, chapter: h.closest('section.lecture') } : null;
+  }).filter(Boolean);
+  var lastActiveChapter = '';
   var ticking = false;
   function onScroll() {
     if (ticking) return;
@@ -3999,14 +4169,26 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
       progress.style.width = (max > 0 ? (doc.scrollTop / max * 100) : 0) + '%';
       backTop.classList.toggle('show', doc.scrollTop > 600);
       var y = window.scrollY + 120;
-      var currentId = sections.length ? sections[0].id : '';
-      sections.forEach(function (s) {
-        var top = s.getBoundingClientRect().top + window.scrollY;
-        if (top <= y) currentId = s.id;
+      var currentSection = sections.length ? sections[0] : null;
+      sections.forEach(function (sec) {
+        if (sec.getBoundingClientRect().top + window.scrollY <= y) currentSection = sec;
       });
-      navLinks.forEach(function (a) {
+      var currentId = currentSection ? currentSection.id : '';
+      chapterLinks.forEach(function (a) {
         a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
       });
+      if (currentId !== lastActiveChapter) {
+        var activeGroup = document.getElementById('nav-group-' + currentId);
+        if (activeGroup) setNavGroup(activeGroup, true);
+        lastActiveChapter = currentId;
+      }
+      var activeSub = null;
+      subsectionHeads.forEach(function (item) {
+        if (item.chapter === currentSection && item.heading.getBoundingClientRect().top + window.scrollY <= y) {
+          activeSub = item.link;
+        }
+      });
+      subLinks.forEach(function (a) { a.classList.toggle('active', a === activeSub); });
       ticking = false;
     });
   }
@@ -4016,7 +4198,14 @@ mark.hit{background:color-mix(in srgb,var(--gold) 30%,transparent);color:inherit
   backTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-  navLinks.forEach(function (a) {
+  chapterLinks.forEach(function (a) {
+    a.addEventListener('click', function () {
+      var group = a.closest('.nav-group');
+      if (group) setNavGroup(group, true);
+      if (!group || window.innerWidth > 980) setMenu(false);
+    });
+  });
+  subLinks.forEach(function (a) {
     a.addEventListener('click', function () { setMenu(false); });
   });
 
